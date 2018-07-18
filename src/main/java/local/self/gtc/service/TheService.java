@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class TheService {
@@ -17,6 +18,6 @@ public class TheService {
 
     public Balance findOrCreateBalance(String username) {
         Optional<Balance> usersBalance = balanceRepository.findById(username);
-        return usersBalance.orElseGet(() -> balanceRepository.save(new Balance(username, DEFAULT_BALANCE)));
+        return usersBalance.orElseGet(() -> balanceRepository.save(new Balance(username, new Random().nextInt(25))));
     }
 }
